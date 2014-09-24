@@ -1,7 +1,21 @@
-//Teagan Mucher, Block 4 AP CS, "Chemotaxis"
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
 
 Bacteria [] colony; 
-void setup()   
+public void setup()   
 {
  	background(255);
  	frameRate(15);
@@ -12,7 +26,7 @@ void setup()
  		colony[i]=new Bacteria();
  	}  
 }   
-void draw()   
+public void draw()   
 {    
  	background(255);
  	for(int i=1; i<colony.length; i++)   
@@ -21,7 +35,7 @@ void draw()
  		colony[i].move();
  	}  
 }  
-void mousePressed()
+public void mousePressed()
 {
 	background(255);
 	colony = new Bacteria[10];
@@ -42,15 +56,24 @@ class Bacteria
  		g = (int)(Math.random()*255);
  		b = (int)(Math.random()*255);
  	}  
- 	void show()
+ 	public void show()
  	{
  		stroke(0);
  		fill(r,g,b);
  		ellipse(x,y,25,25);
  	}   
- 	void move()
+ 	public void move()
  	{
  		x = x + (int)(Math.random()*8-4);
  		y = y + (int)(Math.random()*8-4);
  	}
 }    
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
